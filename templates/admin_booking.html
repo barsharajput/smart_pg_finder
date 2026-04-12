@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;">📊 All Bookings</h2>
+
+<table border="1" style="margin:auto; width:80%; text-align:center;">
+
+<tr>
+<th>User</th>
+<th>PG Name</th>
+<th>Phone</th>
+<th>Status</th>
+</tr>
+
+{% for b in bookings %}
+<tr>
+<td>{{ b['user_name'] }}</td>
+<td>{{ b['name'] }}</td>
+<td>{{ b['phone'] }}</td>
+<td>{{ b['status'] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

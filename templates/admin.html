@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;">Admin Dashboard</h2>
+
+<div class="dashboard">
+
+  <div class="chart-card">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <div class="stats">
+    <div class="box">Total PG: {{ total }}</div>
+    <div class="box">High Rating: {{ high }}</div>
+    <div class="box">Budget PG: {{ budget }}</div>
+  </div>
+
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Total PG", "Top Rated", "Budget"],
+        datasets: [{
+            label: "PG Stats",
+            data: [{{ total }}, {{ high }}, {{ budget }}],
+            backgroundColor: ["#2196f3", "#4caf50", "#ff9800"]
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: true }
+        }
+    }
+});
+</script>
+
+{% endblock %}

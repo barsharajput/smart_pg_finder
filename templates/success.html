@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.success-box {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.checkmark {
+    font-size: 80px;
+    color: #28a745;
+    animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #0072ff;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+</style>
+
+<div class="success-box">
+
+    <div class="checkmark">✔</div>
+
+    <h2>Payment Successful 🎉</h2>
+    <p>Your PG has been booked successfully</p>
+
+    <a href="/bookings" class="btn">View My Bookings</a>
+
+</div>
+
+{% endblock %}

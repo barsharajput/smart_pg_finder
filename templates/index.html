@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+
+<div>
+
+<h1>Find Your Perfect PG</h1>
+
+<p>Discover best PG based on location and budget</p>
+
+<div class="search-box">
+
+<input type="text" placeholder="Enter Location">
+
+<input type="number" placeholder="Budget">
+
+<button>Search</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<h2 style="text-align:center;margin-top:40px;">Featured PG</h2>
+
+
+<div class="pg-container">
+
+{% for pg in pg_list %}
+
+<div class="pg-card">
+
+<img src="/static/uploads/{{pg.image}}">
+
+<h3>{{pg.name}}</h3>
+
+<p>📍 {{pg.location}}</p>
+
+<p>₹{{pg.rent}}</p>
+
+<a href="/viewpg">
+
+<button>View</button>
+
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

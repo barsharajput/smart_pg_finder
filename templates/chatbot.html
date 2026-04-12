@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>PG Assistant Chatbot</h2>
+
+<input type="text" id="msg" placeholder="Ask about PG">
+
+<button onclick="send()">Send</button>
+
+<p id="reply"></p>
+
+<script>
+
+function send(){
+
+var msg = document.getElementById("msg").value;
+
+fetch("/chatbot?msg="+msg)
+
+.then(res=>res.text())
+
+.then(data=>{
+
+document.getElementById("reply").innerText=data;
+
+})
+
+}
+
+</script>
+
+{% endblock %}

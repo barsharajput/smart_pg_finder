@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+    background: #f4f7fb;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* MAIN */
+.main-content {
+    padding: 30px 40px;
+    transition: 0.3s;
+}
+
+.main-content.shift {
+    margin-left: 260px;
+}
+
+/* GRID */
+.pg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* CARD */
+.pg-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.pg-card:hover {
+    transform: translateY(-5px);
+}
+
+/* IMAGE */
+.img-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* INFO */
+.pg-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* TEXT */
+.pg-info h3 {
+    margin: 0;
+}
+
+.location {
+    color: gray;
+    font-size: 14px;
+}
+
+.rent {
+    font-weight: bold;
+}
+
+/* BOOK BUTTON */
+.book-btn {
+    width: fit-content;
+    padding: 6px 14px;
+    background: #00bcd4;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.location-btn {
+    padding: 5px 10px;
+    background: #4caf50;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* REVIEW FORM */
+.review-form {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.review-form input {
+    flex: 1;
+    min-width: 80px;
+    padding: 6px;
+}
+
+.review-btn {
+    padding: 6px 10px;
+    background: #0072ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+/* LOCATION BUTTON (BOTTOM RIGHT) */
+.map-btn {
+    align-self: flex-end;
+    background: linear-gradient(45deg, #28a745, #1e7e34);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* WISHLIST */
+.wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.wishlist.active a {
+    color: red;
+}
+
+/* FILTER BUTTON */
+.filter-toggle {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    color: white;
+    padding: 12px 14px;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+    z-index: 2000;  
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* SIDEBAR */
+.filter-sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #ffffff;
+    padding: 25px 20px;
+    position: fixed;
+    left: -260px;
+    top: 0;
+    transition: 0.4s;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.15);
+}
+
+.filter-sidebar.active {
+    left: 0;
+}
+
+/* BUTTON GROUP */
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn {
+    background: linear-gradient(45deg, #ffcc00, #ff9900);
+    color: black;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.delete-btn {
+    background: linear-gradient(45deg, #ff4d4d, #cc0000);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.top-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+.map-btn {
+    position: static;
+    background: linear-gradient(45deg, #28a745, #1e7e34);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+}
+</style>
+
+<!-- FILTER -->
+<div class="filter-toggle" onclick="toggleFilter()">➤</div>
+
+<div class="filter-sidebar" id="filterBox">
+    <h3>Filters</h3>
+    <form method="GET">
+        <input type="number" name="budget" placeholder="₹ Max Budget">
+        <input type="text" name="location" placeholder="Location">
+        <button type="submit">Apply</button>
+    </form>
+    <a href="/viewpg">Clear Filters</a>
+</div>
+
+<!-- MAIN -->
+<div class="main-content" id="mainContent">
+
+<div class="pg-grid">
+
+{% if pgs|length == 0 %}
+    <h2 style="text-align:center; margin-top:50px; color:gray;">
+        😔 No PG Available Right Now
+    </h2>
+{% endif %}
+
+{% for pg in pgs %}
+<div class="pg-card">
+
+    <!-- Wishlist -->
+    <div class="wishlist {% if pg.id in wishlist %}active{% endif %}">
+        <a href="{{ url_for('wishlist', pg_id=pg.id) }}">❤️</a>
+    </div>
+
+    <!-- Image -->
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='uploads/' + (pg.image if pg.image else 'default.jpg')) }}">
+    </div>
+
+    <!-- Info -->
+    <div class="pg-info">
+
+        <h3>{{ pg.name }}</h3>
+    <div class="price-row">
+    <span>₹ {{ pg['rent'] }}/month</span>
+
+    <a href="https://www.google.com/maps/search/{{ pg['location'] }}"
+       target="_blank"
+       class="location-btn">
+       📍 View Location
+    </a>
+</div>        
+
+        {% if session.get('role') == 'user' %}
+            <div class="top-action">
+    <a href="/book/{{ pg.id }}" class="book-btn">Book</a>
+
+    </div>
+            <form action="/review/{{ pg.id }}" method="POST" class="review-form">
+                <input type="number" name="rating" min="1" max="5" placeholder="Rating">
+                <input type="text" name="comment" placeholder="Review">
+                <button class="review-btn">Submit</button>
+            </form>
+        {% endif %}
+
+        {% if session.get('role') == 'owner' %}
+        <div class="btn-group">
+            <a href="{{ url_for('edit', id=pg.id) }}" class="edit-btn">✏ Edit</a>
+            <a href="{{ url_for('delete_pg', id=pg.id) }}" class="delete-btn"
+               onclick="return confirm('Are you sure?')">Delete</a>
+        </div>
+        {% endif %}
+
+        <!-- Location -->
+    
+        </a>
+
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+</div>
+
+<script>
+function toggleFilter(){
+    document.getElementById("filterBox").classList.toggle("active");
+    document.getElementById("mainContent").classList.toggle("shift");
+}
+</script>
+
+{% endblock %}

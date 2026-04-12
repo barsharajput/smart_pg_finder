@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.search-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.search-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.search-container p {
+    text-align: center;
+    color: gray;
+    margin-bottom: 25px;
+}
+
+/* FORM */
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.search-form input,
+.search-form select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    min-width: 180px;
+    font-size: 14px;
+}
+
+/* RANGE */
+.range-box {
+    width: 100%;
+    text-align: center;
+}
+
+.range-box input {
+    width: 60%;
+}
+
+/* BUTTON */
+.search-btn {
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    transform: scale(1.05);
+}
+</style>
+
+<div class="search-container">
+
+    <h1>🔍 Find Your Perfect PG</h1>
+    <p>Rent smarter, hassle-free living</p>
+
+    <form class="search-form" method="GET" action="/viewpg">
+
+        <!-- CITY -->
+        <select name="city">
+            <option value="">Select City</option>
+            <option>Patna</option>
+            <option>Delhi</option>
+            <option>Noida</option>
+            <option>Pune</option>
+        </select>
+
+        <!-- LOCATION -->
+        <input type="text" name="location" placeholder="Search Location">
+
+        <!-- GENDER -->
+        <select name="gender">
+            <option value="">Gender</option>
+            <option>Boys</option>
+            <option>Girls</option>
+        </select>
+
+        <!-- RANGE -->
+        <div class="range-box">
+            <label>₹ Rent: <span id="rentValue">5000</span></label><br>
+            <input type="range" name="rent" min="1000" max="20000" value="5000"
+                   oninput="rentValue.innerText=this.value">
+        </div>
+
+        <!-- BUTTON -->
+        <button class="search-btn">Search PG 🚀</button>
+
+    </form>
+
+</div>
+
+{% endblock %}

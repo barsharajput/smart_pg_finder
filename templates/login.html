@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Smart PG Finder</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 850px;
+            height: 450px;
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        /* LEFT SIDE (IMAGE / ANIMATION) */
+        .left {
+            flex: 1;
+            background: linear-gradient(135deg, #1d2b64, #f8cdda);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left img {
+            width: 70%;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* RIGHT SIDE (FORM) */
+        .right {
+            flex: 1;
+            background: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-box {
+            margin-bottom: 15px;
+        }
+
+        .input-box input,
+        .input-box select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus,
+        .input-box select:focus {
+            border-bottom: 2px solid #4ca1af;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #4ca1af, #2c3e50);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .links {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #4ca1af;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE IMAGE -->
+<div class="left">
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<lottie-player 
+    src="https://assets2.lottiefiles.com/packages/lf20_xlmz9xwm.json"
+    background="transparent"
+    speed="1"
+    style="width: 280px; height: 280px;"
+    loop autoplay>
+</lottie-player>
+</div>
+    <!-- RIGHT SIDE FORM -->
+    <div class="right">
+
+        <h2>Welcome Back 👋</h2>
+
+        <form method="POST">
+
+            <div class="input-box">
+                <select name="role">
+                    <option value="">Login as</option>
+                    <option value="user">User</option>
+                    <option value="owner">Owner</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <button class="btn">Login</button>
+
+        </form>
+
+        <div class="links">
+            Don’t have an account? <a href="/register">Register</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

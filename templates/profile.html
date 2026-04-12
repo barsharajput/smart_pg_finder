@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;">👤 Profile Dashboard</h2>
+
+<div class="dashboard">
+
+<div class="box">
+<h3>Welcome</h3>
+<p>{{ user }}</p>
+</div>
+
+<div class="box">
+<h3>Total PG</h3>
+<p>{{ total_pg }}</p>
+</div>
+
+<div class="box">
+<h3>Bookings</h3>
+<p>{{ total_bookings }}</p>
+</div>
+
+<div class="box">
+<h3>Wishlist</h3>
+<p>{{ total_wishlist }}</p>
+</div>
+
+</div>
+
+{% endblock %}

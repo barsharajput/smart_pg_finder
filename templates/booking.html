@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.booking-box {
+    max-width: 400px;
+    margin: 50px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.booking-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.booking-box button {
+    padding: 10px 20px;
+    background: #0072ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+</style>
+
+<div class="booking-box">
+
+    <h2>📞 Enter Phone Number</h2>
+
+    <form method="POST">
+        <input type="text" name="phone" placeholder="Enter Phone Number" required>
+        <button type="submit">Proceed to Payment</button>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+.pg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 40px;
+}
+
+.pg-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.pg-card:hover {
+    transform: translateY(-5px);
+}
+
+.img-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.pg-info {
+    padding: 12px;
+}
+
+.view-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #00bcd4;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-top: 8px;
+}
+
+.remove-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #ff4d4d;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-left: 8px;
+}
+</style>
+
+<h2 style="text-align:center;">❤️ My Favorite PGs</h2>
+
+{% if pgs|length == 0 %}
+
+<p style="text-align:center; margin-top:40px; color:gray;">
+    😔 No PGs in your wishlist
+</p>
+
+{% else %}
+
+<div class="pg-grid">
+
+{% for pg in pgs %}
+<div class="pg-card">
+
+    <div class="img-box">
+        <img src="{{ url_for('static', filename='uploads/' + (pg['image'] if pg['image'] else 'default.jpg')) }}">
+    </div>
+
+    <div class="pg-info">
+        <h3>{{ pg['name'] }}</h3>
+        <p>📍 {{ pg['location'] }}</p>
+        <p>₹ {{ pg['rent'] }}/month</p>
+
+        <!-- ⭐ SAFE RATING -->
+        {% if 'rating' in pg.keys() and pg['rating'] %}
+        <p>⭐ {{ pg['rating'] }}</p>
+        {% endif %}
+
+        <a href="/book/{{ pg['id'] }}" class="view-btn">Book</a>
+
+        <a href="{{ url_for('wishlist', pg_id=pg['id']) }}" class="remove-btn">
+            Remove ❌
+        </a>
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+{% endblock %}

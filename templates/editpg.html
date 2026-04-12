@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+    background: #f4f7fb;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* CONTAINER */
+.edit-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+.edit-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* INPUT */
+.edit-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.edit-container input:focus {
+    border-color: #0072ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0,114,255,0.2);
+}
+
+/* BUTTON */
+.update-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: linear-gradient(45deg, #28a745, #00c851);
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.update-btn:hover {
+    transform: scale(1.03);
+}
+</style>
+
+<div class="edit-container">
+
+    <h2>✏️ Edit PG</h2>
+
+    <form method="POST">
+
+        <input type="text" name="name" value="{{ pg.name }}" placeholder="PG Name" required>
+
+        <input type="text" name="location" value="{{ pg.location }}" placeholder="Location" required>
+
+        <input type="number" name="rent" value="{{ pg.rent }}" placeholder="Monthly Rent ₹" required>
+
+        <button type="submit" class="update-btn">Update PG 🚀</button>
+
+    </form>
+
+</div>
+
+{% endblock %}

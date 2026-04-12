@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Write Review</h2>
+
+<form method="post">
+
+<textarea name="comment" placeholder="Write review"></textarea>
+
+<br><br>
+
+Rating
+<input type="number" name="rating" min="1" max="5">
+
+<br><br>
+
+<button>Submit</button>
+
+</form>
+
+{% endblock %}

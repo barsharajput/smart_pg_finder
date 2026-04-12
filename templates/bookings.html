@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.booking-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 30px;
+}
+
+.booking-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.booking-card:hover {
+    transform: translateY(-5px);
+}
+
+.pg-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.pg-location {
+    color: gray;
+    margin-top: 5px;
+}
+
+.pg-rent {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #0072ff;
+}
+
+.status {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.booked {
+    background: #d4edda;
+    color: #155724;
+}
+
+.paid {
+    background: #cce5ff;
+    color: #004085;
+}
+</style>
+
+<h2 style="text-align:center;">📘 My Bookings</h2>
+
+{% if bookings|length == 0 %}
+<p style="text-align:center; margin-top:40px; color:gray;">
+    😔 No bookings yet
+</p>
+{% endif %}
+
+<div class="booking-container">
+
+{% for b in bookings %}
+<div class="booking-card">
+
+    <div class="pg-name">{{ b['name'] }}</div>
+
+    <div class="pg-location">📍 {{ b['location'] }}</div>
+
+    <div class="pg-rent">₹ {{ b['rent'] }}/month</div>
+
+    <div class="status">
+        Status:
+        <span class="badge booked">{{ b['status'] }}</span>
+    </div>
+
+    <div class="status">
+        Payment:
+        <span class="badge paid">{{ b['payment'] }}</span>
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

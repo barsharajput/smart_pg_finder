@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.budget-container {
+    padding: 30px 40px;
+}
+
+.budget-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.budget-search {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.budget-search input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.budget-search button {
+    padding: 10px 18px;
+    border: none;
+    background: #0072ff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* GRID */
+.budget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+.budget-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+.budget-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.budget-info {
+    padding: 12px;
+}
+
+.book-btn {
+    padding: 6px 12px;
+    background: #00bcd4;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+</style>
+
+<div class="budget-container">
+
+    <div class="budget-header">
+        <h2>💰 Budget PG Finder</h2>
+        <p>Enter your budget to find PG</p>
+    </div>
+
+    <form class="budget-search" method="GET">
+        <input type="number" name="budget" placeholder="Enter Max Budget">
+        <button>Search</button>
+    </form>
+
+    {% if max_budget %}
+
+        {% if pgs|length == 0 %}
+            <p style="text-align:center;">❌ No PG found</p>
+        {% else %}
+
+        <div class="budget-grid">
+
+            {% for pg in pgs %}
+            <div class="budget-card">
+
+                <img src="{{ url_for('static', filename='uploads/' + (pg['image'] if pg['image'] else 'default.jpg')) }}">
+
+                <div class="budget-info">
+                    <h3>{{ pg['name'] }}</h3>
+                    <p>📍 {{ pg['location'] }}</p>
+                    <p>₹ {{ pg['rent'] }}/month</p>
+
+                    <a href="/book/{{ pg['id'] }}" class="book-btn">Book</a>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+    {% else %}
+
+        <p style="text-align:center; margin-top:40px; color:gray;">
+            🔍 Enter budget to see PGs
+        </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

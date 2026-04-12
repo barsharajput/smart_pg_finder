@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;">📅 My Bookings</h2>
+
+<div class="pg-grid">
+
+{% for b in bookings %}
+<div class="pg-card">
+
+    <div class="pg-info">
+        <h3>{{ b['name'] }}</h3>
+        <p>📍 {{ b['location'] }}</p>
+        <p>👤 {{ b['user_name'] }}</p>
+        <p>📞 {{ b['phone'] }}</p>
+        <p>Status: 
+        <span style="color:green;">
+        {{ b['status'] }}
+        </span>
+        </p>
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
