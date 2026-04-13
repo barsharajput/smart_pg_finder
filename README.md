@@ -105,12 +105,27 @@ Tools| Git, GitHub
 📂 Project Structure
 
 smart_pg_finder/
-│── static/           # CSS, JS, Images
-│── templates/        # HTML templates
-│── app.py            # Core backend logic
-│── database.db       # SQLite database
-│── requirements.txt  # Dependencies
-│── Procfile          # Deployment config
+│
+├── static/                # CSS, JavaScript, Images
+│   ├── style.css
+│   ├── script.js
+│   └── uploads/
+│
+├── templates/            # HTML Templates
+│   ├── index.html
+│   ├── home.html
+│   ├── login.html
+│   ├── signup.html
+│   ├── booking.html
+│   ├── wishlist.html
+│   ├── recommend.html
+│   └── ...
+│
+├── app.py                # Main Flask application (routes + logic)
+├── database.db           # SQLite database
+├── requirements.txt      # Python dependencies
+├── Procfile              # Deployment configuration (Render)
+└── .gitignore            # Ignored files
 
 ---
 
