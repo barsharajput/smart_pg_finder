@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Backend-Flask-blue?style=for-the-badge&logo=python">
   <img src="https://img.shields.io/badge/Database-SQLite-orange?style=for-the-badge">
   <img src="https://img.shields.io/badge/Frontend-HTML%20CSS%20JS-purple?style=for-the-badge">
-</p>---
+</p>
 
 🧭 Problem Statement
 
