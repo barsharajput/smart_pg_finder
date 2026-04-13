@@ -81,6 +81,7 @@ It bridges the gap between demand (users) and supply (owners) in a clean, scalab
 
 🧠 System Architecture
 
+```bash
 Frontend (HTML/CSS/JS)
         ↓
 Flask Backend (Routing + Logic)
@@ -88,18 +89,19 @@ Flask Backend (Routing + Logic)
 SQLite Database (Storage)
         ↓
 Dynamic Rendering (Templates)
-
+```
 ---
 
 🛠️ Tech Stack
 
+```bash
 Layer| Technology
 Frontend| HTML, CSS, JavaScript
 Backend| Flask (Python)
 Database| SQLite
 Deployment| Render
 Tools| Git, GitHub
-
+```
 ---
 
 📂 Project Structure
