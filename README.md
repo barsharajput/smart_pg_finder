@@ -106,12 +106,12 @@ Tools| Git, GitHub
 
 smart_pg_finder/
 │
-├── static/                # CSS, JavaScript, Images
+├── static/
 │   ├── style.css
 │   ├── script.js
 │   └── uploads/
 │
-├── templates/            # HTML Templates
+├── templates/
 │   ├── index.html
 │   ├── home.html
 │   ├── login.html
@@ -121,11 +121,11 @@ smart_pg_finder/
 │   ├── recommend.html
 │   └── ...
 │
-├── app.py                # Main Flask application (routes + logic)
-├── database.db           # SQLite database
-├── requirements.txt      # Python dependencies
-├── Procfile              # Deployment configuration (Render)
-└── .gitignore            # Ignored files
+├── app.py
+├── database.db
+├── requirements.txt
+├── Procfile
+└── .gitignore
 
 ---
 
