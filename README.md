@@ -95,12 +95,12 @@ Dynamic Rendering (Templates)
 🛠️ Tech Stack
 
 ```bash
-Layer| Technology
-Frontend| HTML, CSS, JavaScript
-Backend| Flask (Python)
-Database| SQLite
-Deployment| Render
-Tools| Git, GitHub
+Layer - Technology
+Frontend - HTML, CSS, JavaScript
+Backend - Flask (Python)
+Database - SQLite
+Deployment - Render
+Tools - Git, GitHub
 ```
 ---
 
