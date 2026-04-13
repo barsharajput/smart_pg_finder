@@ -104,6 +104,7 @@ Tools| Git, GitHub
 
 📂 Project Structure
 
+```bash
 smart_pg_finder/
 │
 ├── static/
@@ -126,7 +127,7 @@ smart_pg_finder/
 ├── requirements.txt
 ├── Procfile
 └── .gitignore
-
+```
 ---
 
 🚀 Local Setup & Execution
